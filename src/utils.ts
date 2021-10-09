@@ -1,11 +1,15 @@
-import { arithmeticButtons, numericButtons } from "./data";
-
 export const prepareExpression = (expression: string, removeBrackets = false) => {
     let ex = expression;
     ex = ex
+        // Replaces ÷ sign with /
         .replaceAll('÷', '/')
+        // Replaces x sign with *
         .replaceAll('x', '*')
+        // Replaces all brackets without multiplication sign
+        // 1+2(2+5) turns to 1+2*(2+5)
         .replaceAll(/(\d+)\(/g, '$1*(')
+        // Adds * sign between brackets
+        // (1+2)(2+5) turns to (1+2)*(2+5)
         .replaceAll(/\)\(/g, ')*(')
     
     if (removeBrackets) 
@@ -28,9 +32,11 @@ export const isValidExpression = (expression: string) => {
 
 export const isEqualBracketPair = (expression: string) => {
     let brackets = 0
+    // Number of openning and closing brackets
+    // must remain the same in a valid expression
     for (let char of expression) {
         if (char === '(') brackets++
-        if (char === ')') brackets--
+        else if (char === ')') brackets--
     }
     return brackets === 0;
 }

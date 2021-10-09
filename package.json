@@ -24,5 +24,8 @@
     "sass": "1.26.8",
     "typescript": "^4.3.2",
     "vite": "^2.6.4"
+  },
+  "dependencies-comments":{
+    "classnames": "Utility package to manage multiple className values"
   }
 }

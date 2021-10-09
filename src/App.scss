@@ -10,6 +10,11 @@ $light-red: #cd2525;
   
 }
 
+.additional-result{
+  color: $white;
+  background: $dark-01;
+  padding: 1rem 0.5rem;
+}
 
 .calculator-container{
   min-height: 100vh;
@@ -41,6 +46,7 @@ $light-red: #cd2525;
       width: 100%;
       font-weight: 600;
       box-shadow: none;
+      height: 60px;
     }
   }
   

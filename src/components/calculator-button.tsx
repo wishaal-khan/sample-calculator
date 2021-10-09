@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { ButtonType, CalculatorButtonProps, CalculatorButtonType } from '../types'
 import { Button } from 'reactstrap';

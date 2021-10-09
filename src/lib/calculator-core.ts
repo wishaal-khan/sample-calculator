@@ -1,5 +1,5 @@
 import { arithmeticButtons, numericButtons } from "../data";
-import { getCharacterCount } from "../utils";
+import { getCharacterCount, isEqualBracketPair, isValidExpression, prepareExpression } from "../utils";
 
 const setDecimal = (screenText: string) => {
     // Simplify Equation and
@@ -7,7 +7,7 @@ const setDecimal = (screenText: string) => {
     const operands = screenText
         .replaceAll(/[)(]/g, '')
         .split(/[\+\-x÷]+/);
-    
+
     let lastOperand = operands[operands.length - 1];
     if (lastOperand.includes('.')) return screenText;
     return screenText + '.';
@@ -47,7 +47,7 @@ const setNumericChar = (screenText: string, value: string) => {
 const setArithmeticChar = (screenText: string, value: string) => {
     let lastChar = screenText[screenText.length - 1];
     if (screenText === '0') return undefined;
-    
+
     // If last character is already an Arithmetic character, then
     // replace it, else leave the text unchanged.
     let updatedScreenText = arithmeticButtons.includes(lastChar) || lastChar === '.'
@@ -59,7 +59,7 @@ const setArithmeticChar = (screenText: string, value: string) => {
 
 export const getScreenText = (screenText: string, value: string) => {
     let text = undefined;
-    
+
     if (numericButtons.includes(value))
         text = setNumericChar(screenText, value);
 
@@ -68,10 +68,10 @@ export const getScreenText = (screenText: string, value: string) => {
 
     if (value === '.')
         text = setDecimal(screenText)
-    
+
     if (value === '(')
         text = startBracket(screenText);
-    
+
     if (value === ')')
         text = endBracket(screenText);
 
@@ -85,4 +85,17 @@ export const clearLastCharacter = (text: string) => {
     return text.length > 1
         ? text.substring(0, text.length - 1)
         : "0"
+}
+
+export const evaluate = (expression: string) => {
+    let exp = prepareExpression(expression);
+    let expWithoutBrackets = prepareExpression(expression, true);
+
+    if (isValidExpression(expWithoutBrackets)
+        && isEqualBracketPair(exp)) {
+        let res = eval(exp);
+        return res;
+    }
+    
+    throw new Error('Expression is not valid.')
 }
