@@ -1,0 +1,44 @@
+$primary : #0d6efd;
+$primary-bg: #091c39;
+$dark-01: #030b17;
+$white: #fff;
+
+.App {
+  text-align: center;
+  background: $primary-bg;
+  
+}
+
+
+.calculator-container{
+  min-height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  &>.row:first-child{
+    max-width: 360px;
+    margin: auto;
+
+    .screen{
+      color: $white;
+      background: $dark-01;
+      margin:0;
+      font-weight: 300;
+      line-height: 30px;
+      font-size: 1.3rem;
+      text-align: right;
+      padding: 1rem 0.85rem;
+    }
+
+    .calculator-button{
+      margin: 0px;
+      border-radius: 0px;
+      width: 100%;
+      font-weight: 600;
+    }
+  }
+  
+}
+
+
