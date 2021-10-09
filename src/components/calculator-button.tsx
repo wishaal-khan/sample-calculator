@@ -1,19 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { CalculatorButtonProps } from '../types'
+import { ButtonType, CalculatorButtonProps, CalculatorButtonType } from '../types'
 import { Button } from 'reactstrap';
 import classnames from 'classnames';
+import { actionButtons, arithmeticButtons, numericButtons } from '../data';
 
 function CalculatorButton(props: CalculatorButtonProps) {
 
     let { onClick, value } = props;
-    const specialButtons = ['C', '-', '+', 'x', '÷', '=']
+    const specialButtons = ['C', '=', ...arithmeticButtons]
 
     const getButtonColor = (value: string) => {
         if (specialButtons.indexOf(value) > -1)
             return 'btn-warning'
     }
-    
+
+    const getButtonObject = (value: string): CalculatorButtonType | undefined => {
+        let type: ButtonType | undefined = undefined;
+
+        if (arithmeticButtons.includes(value)) type = 'arithmetic'
+        if (numericButtons.includes(value)) type = 'numeric'
+        if (actionButtons.includes(value)) type = 'action'
+
+        return type
+            ? { type, value }
+            : undefined;
+    }
 
     return (
         <Button
@@ -22,7 +34,7 @@ function CalculatorButton(props: CalculatorButtonProps) {
                 getButtonColor(value)        
             )}
             color="primary"
-            onClick={() => onClick(value)}
+            onClick={() => onClick(getButtonObject(value))}
         >
             {value}
         </Button>

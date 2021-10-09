@@ -2,6 +2,7 @@ $primary : #0d6efd;
 $primary-bg: #091c39;
 $dark-01: #030b17;
 $white: #fff;
+$light-red: #cd2525;
 
 .App {
   text-align: center;
@@ -29,6 +30,9 @@ $white: #fff;
       font-size: 1.3rem;
       text-align: right;
       padding: 1rem 0.85rem;
+      &.error{
+        background: $light-red;
+      }
     }
 
     .calculator-button{
@@ -36,6 +40,7 @@ $white: #fff;
       border-radius: 0px;
       width: 100%;
       font-weight: 600;
+      box-shadow: none;
     }
   }
   
