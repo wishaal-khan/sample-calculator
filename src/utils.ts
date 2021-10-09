@@ -5,9 +5,11 @@ export const prepareExpression = (expression: string, removeBrackets = false) =>
     ex = ex
         .replaceAll('÷', '/')
         .replaceAll('x', '*')
+        .replaceAll(/(\d+)\(/g, '$1*(')
+        .replaceAll(/\)\(/g, ')*(')
     
     if (removeBrackets) 
-        ex = ex.replaceAll(/[()]/, '')
+        ex = ex.replaceAll(/[\(\)]+/g, '')
 
     return ex;
 }
@@ -15,13 +17,13 @@ export const prepareExpression = (expression: string, removeBrackets = false) =>
 
 export const isValidExpression = (expression: string) => {
     // (\d+(\.\d+)?) checks for a number at the beginning
-    // [-+/*] checks for one of the arithmetic operations
+    // [\-\+\/\*\(] checks for one of the arithmetic operations
 
     // The whole regex validates that a mathematical
     // expression should have atleast one operation being
     // performed.
 
-    return /^(\d+(\.\d+)?)([\-+/*](\d+(\.\d+)?))*$/.test(expression)
+    return /^(\d+(\.\d+)?)([\-\+\/\*\(](\d+(\.\d+)?))*$/.test(expression)
 }
 
 export const isEqualBracketPair = (expression: string) => {
@@ -33,3 +35,10 @@ export const isEqualBracketPair = (expression: string) => {
     return brackets === 0;
 }
 
+
+export const getCharacterCount = (str: string, character: string) => {
+    return str
+        .split('')
+        .filter(x => x === character)
+        .length
+}

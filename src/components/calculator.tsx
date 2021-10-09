@@ -3,7 +3,7 @@ import { Card, CardBody, Col, Container, Row } from 'reactstrap'
 import classnames from 'classnames'
 import { arithmeticButtons, numericButtons, uiButtons } from '../data'
 import CalculatorButton from './calculator-button'
-import { isValidExpression, prepareExpression } from '../utils'
+import { isEqualBracketPair, isValidExpression, prepareExpression } from '../utils'
 import { CalculatorButtonType } from '../types'
 import { clearLastCharacter, getScreenText } from './calculator-core'
 
@@ -23,12 +23,16 @@ function Calculator() {
 
     const evaluate = () => {
         let exp = prepareExpression(screenText);
-        if (isValidExpression(exp)) {
+        let expWithoutBrackets = prepareExpression(screenText, true);
+        console.log(exp);
+        console.log(expWithoutBrackets);
+        if (isValidExpression(expWithoutBrackets)
+            && isEqualBracketPair(exp)) {
             try {
                 let res = eval(exp);
                 setScreenText(String(res));
             } catch (error) {
-                alert("something not right");
+                console.log('Cannot perform this calculation at the moment', error)
             }
         }
         else {
@@ -56,7 +60,7 @@ function Calculator() {
         if (button) {
             let { type, value } = button;
 
-            if (['arithmetic', 'numeric'].includes(type)) {
+            if (['arithmetic', 'numeric', 'dot', 'bracket'].includes(type)) {
                 setFormattedScreenText(value)
             }
             else if (type === 'action') {

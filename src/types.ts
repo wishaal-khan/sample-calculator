@@ -3,7 +3,7 @@ export interface CalculatorButtonProps{
     value: string
 }
 
-export type ButtonType = 'arithmetic' | 'action' | 'numeric'
+export type ButtonType = 'arithmetic' | 'action' | 'numeric' | 'dot' | 'bracket'
 
 export interface CalculatorButtonType {
     type: ButtonType

@@ -21,7 +21,8 @@ function CalculatorButton(props: CalculatorButtonProps) {
         if (arithmeticButtons.includes(value)) type = 'arithmetic'
         if (numericButtons.includes(value)) type = 'numeric'
         if (actionButtons.includes(value)) type = 'action'
-
+        if (value === '.') type = 'dot'
+        if(value === ')' || value === '(') type = 'bracket'
         return type
             ? { type, value }
             : undefined;
