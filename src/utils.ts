@@ -48,3 +48,9 @@ export const getCharacterCount = (str: string, character: string) => {
         .filter(x => x === character)
         .length
 }
+
+export const getOperands = (expression: string) => {
+    return expression
+            .replaceAll(/[)(]/g, '')
+            .split(/[\+\-x÷]+/);
+}

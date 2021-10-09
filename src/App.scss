@@ -1,5 +1,6 @@
 $primary : #0d6efd;
 $primary-bg: #091c39;
+$light-green: #80ff00;
 $dark-01: #030b17;
 $white: #fff;
 $light-red: #cd2525;
@@ -8,6 +9,33 @@ $light-red: #cd2525;
   text-align: center;
   background: $primary-bg;
   
+}
+
+.history-container{
+  max-height: 362px;
+  min-height: 100%;
+  overflow: scroll;
+  &.is-not-empty{
+    align-content: start;
+  }
+  .err-message{
+    color: $dark-01;
+    background: $light-green;
+    margin:0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .history-item{
+    h5,p{margin:0}
+    color: $dark-01;
+    text-align: right;
+    background: $light-green;
+    border-bottom: 1px solid $primary-bg;
+    margin: 0;
+    padding: 1rem;
+  }
 }
 
 .additional-result{
@@ -23,7 +51,7 @@ $light-red: #cd2525;
   justify-content: center;
 
   &>.row:first-child{
-    max-width: 360px;
+    max-width: 600px;
     margin: auto;
 
     .screen{

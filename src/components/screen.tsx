@@ -8,7 +8,7 @@ function Screen(props: ScreenProps) {
         <p className={
             classnames(
                 'screen',
-                isErrored ? 'error' : ''
+                {'error': isErrored},
             )}>
             {text}
         </p>

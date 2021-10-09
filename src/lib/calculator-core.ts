@@ -1,12 +1,10 @@
 import { arithmeticButtons, numericButtons } from "../data";
-import { getCharacterCount, isEqualBracketPair, isValidExpression, prepareExpression } from "../utils";
+import { getCharacterCount, getOperands, isEqualBracketPair, isValidExpression, prepareExpression } from "../utils";
 
 const setDecimal = (screenText: string) => {
     // Simplify Equation and
     // Split equation based on operators 
-    const operands = screenText
-        .replaceAll(/[)(]/g, '')
-        .split(/[\+\-x÷]+/);
+    const operands = getOperands(screenText);
 
     let lastOperand = operands[operands.length - 1];
     if (lastOperand.includes('.')) return screenText;
@@ -90,12 +88,15 @@ export const clearLastCharacter = (text: string) => {
 export const evaluate = (expression: string) => {
     let exp = prepareExpression(expression);
     let expWithoutBrackets = prepareExpression(expression, true);
+    let operands = getOperands(expression);
 
     if (isValidExpression(expWithoutBrackets)
-        && isEqualBracketPair(exp)) {
+        && isEqualBracketPair(exp)
+        && operands.length > 1
+    ) {
         let res = eval(exp);
         return res;
     }
-    
+
     throw new Error('Expression is not valid.')
 }

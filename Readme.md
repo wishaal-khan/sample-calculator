@@ -37,6 +37,8 @@ There are only 3 UI components used in this application, namely, Calculator, Cal
 `CalculatorButton` displays a button and handles it's UI, plus checks what type of button is being displayed.
 `AdditionalResult` is a simple component that is displayed to show any additional message, in this case, PostFix notation of mathematical expression.
 `Screen` is a simple component that is the main display of calculator
+`HistoryItem` displays a single History item that contains expression, its post fix, and result
+`HistoryContainer` displays list of history. It also displays an information message when nothing is present.
 
 
 

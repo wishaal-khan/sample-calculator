@@ -12,6 +12,16 @@ export interface AdditionalResultProps{
     message: string
 }
 
+export interface HistoryItemProps{
+    expression: string
+    postfix: string
+    result: string
+}
+
+export interface HistoryContainerProps{
+    historyItems: HistoryItemProps[]
+}
+
 export type ButtonType =
     | 'arithmetic'
     | 'action'
