@@ -14,13 +14,13 @@ $light-red: #cd2525;
 .history-container{
   max-height: 362px;
   min-height: 100%;
+  background: $light-green;
   overflow: scroll;
   &.is-not-empty{
     align-content: start;
   }
   .err-message{
-    color: $dark-01;
-    background: $light-green;
+    color: $dark-01;    
     margin:0;
     display: flex;
     align-content: center;
@@ -29,6 +29,17 @@ $light-red: #cd2525;
   }
   .history-item{
     h5,p{margin:0}
+
+    .delete-btn{
+      display:block;
+      visibility:hidden;
+      box-shadow: none;
+    }
+
+    &:hover .delete-btn{
+      visibility: visible;
+    }
+
     color: $dark-01;
     text-align: right;
     background: $light-green;

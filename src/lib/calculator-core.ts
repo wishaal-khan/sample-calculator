@@ -8,7 +8,9 @@ const setDecimal = (screenText: string) => {
 
     let lastOperand = operands[operands.length - 1];
     if (lastOperand.includes('.')) return screenText;
-    return screenText + '.';
+    return lastOperand.length === 0
+        ? screenText + '0.'
+        : screenText + '.';
 }
 
 const startBracket = (screenText: string) => {

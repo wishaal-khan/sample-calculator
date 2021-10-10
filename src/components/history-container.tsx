@@ -6,13 +6,18 @@ import HistoryItem from './history-item'
 
 function HistoryContainer(props: HistoryContainerProps) {
     let historyItems = props.historyItems
+    
     return (
         <Row className={classnames(
             "history-container",
             { 'is-not-empty': historyItems.length > 0 }
         )}>
             {historyItems.map((item,index) =>
-                <HistoryItem key={`history-item-${index}`} {...item} /> 
+                <HistoryItem
+                    {...item}
+                    index={index}
+                    key={`history-item-${index}`}
+                />
             )}
             {
                 historyItems.length === 0

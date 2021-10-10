@@ -3,11 +3,12 @@ import { Col, Container, Row } from 'reactstrap'
 import { uiButtons } from '../data'
 import CalculatorButton from './calculator-button'
 import Screen from './screen'
-import { CalculatorButtonType, HistoryItemProps } from '../types'
+import { CalculatorButtonType, HistoryItemProps, HistoryItemType } from '../types'
 import { clearLastCharacter, evaluate, getScreenText } from '../lib/calculator-core'
 import AdditionalResult from './additional-result'
 import HistoryItem from './history-item'
 import HistoryContainer from './history-container'
+import { getPostFixExpression, prepareExpression } from '../utils'
 
 
 function Calculator() {
@@ -23,19 +24,33 @@ function Calculator() {
         });
     }
 
+    const onDeleteHistoryItem = (index?: number) => {
+        setHistoryItems(historyItems =>
+            historyItems
+                .filter((_, i) => i !== index)
+        )
+    }
+
     const calculate = () => {
         try {
             // try evaluating the expression, throws error
             // if expression is invalid
             let expression = screenText;
             let res = String(evaluate(screenText));
-            setHistoryItems(historyItems => [
-                ...historyItems, {
-                    expression,
-                    postfix: "FALJ",
-                    result: res
-                }
-            ])
+            setHistoryItems(historyItems => {
+                let exp = prepareExpression(expression);
+                let postfix = getPostFixExpression(exp);
+                postfix = prepareExpression(postfix, true, true);
+                
+                return [
+                    ...historyItems, {
+                        expression,
+                        postfix,
+                        result: res,
+                        OnDelete: onDeleteHistoryItem
+                    }
+                ]
+            })
             setScreenText(res);
         } catch (error) {
             setIsErrored(true);
