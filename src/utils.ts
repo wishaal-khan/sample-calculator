@@ -5,27 +5,27 @@ export const prepareExpression = (expression: string, removeBrackets = false, re
     ex = ex
         // Replaces all brackets without multiplication sign
         // 1+2(2+5) turns to 1+2*(2+5)
-        .replaceAll(/(\d+)\(/g, '$1*(')
+        .replace(/(\d+)\(/g, '$1*(')
         // Adds * sign between brackets
         // (1+2)(2+5) turns to (1+2)*(2+5)
-        .replaceAll(/\)\(/g, ')*(')
+        .replace(/\)\(/g, ')*(')
     if (reverse) {
         ex = ex
         // Replaces ÷ sign with /
-        .replaceAll('/', '÷')
+        .replace(/\//g, '÷')
         // Replaces x sign with *
-        .replaceAll('*', 'x')
+        .replace(/\*/g, 'x')
     }
     else {
         ex = ex
         // Replaces ÷ sign with /
-        .replaceAll('÷', '/')
+        .replace(/÷/g, '/')
         // Replaces x sign with *
-        .replaceAll('x', '*')
+        .replace(/x/g, '*')
     }
     
     if (removeBrackets) 
-        ex = ex.replaceAll(/[\(\)]+/g, '')
+        ex = ex.replace(/[\(\)]+/g, '')
 
     return ex;
 }
@@ -63,7 +63,7 @@ export const getCharacterCount = (str: string, character: string) => {
 
 export const getOperands = (expression: string) => {
     return expression
-            .replaceAll(/[)(]/g, '')
+            .replace(/[)(]/g, '')
             .split(/[\+\-x÷]+/);
 }
 

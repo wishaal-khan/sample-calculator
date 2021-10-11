@@ -1,8 +1,16 @@
 {
+  "exclude": [
+    "src/**/*.test.ts"
+  ],
+  "typeRoots": ["./node_modules/@types"],
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -16,5 +24,7 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src"]
+  "include": [
+    "./src"
+  ]
 }

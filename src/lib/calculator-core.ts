@@ -1,7 +1,7 @@
 import { arithmeticButtons, numericButtons } from "../data";
 import { getCharacterCount, getOperands, isEqualBracketPair, isValidExpression, prepareExpression } from "../utils";
 
-const setDecimal = (screenText: string) => {
+export const setDecimal = (screenText: string) => {
     // Simplify Equation and
     // Split equation based on operators 
     const operands = getOperands(screenText);
@@ -13,7 +13,7 @@ const setDecimal = (screenText: string) => {
         : screenText + '.';
 }
 
-const startBracket = (screenText: string) => {
+export const startBracket = (screenText: string) => {
     return screenText === '0'
         ? '('
         : screenText + '('
