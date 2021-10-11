@@ -7,6 +7,11 @@ In order to install NPM packages, run the following command;
 npm install
 ```
 
+In order to run tests;
+```
+npm run test
+```
+
 Run the following command to serve the application locally;
 ```
 npm run dev
