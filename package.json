@@ -1,6 +1,7 @@
 {
   "name": "sample-calculator",
   "version": "0.0.0",
+  "description": "A simple calculator application made with ReactJS on Vitegit ",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc && vite build",
